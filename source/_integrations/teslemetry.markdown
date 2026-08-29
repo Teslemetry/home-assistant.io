@@ -187,6 +187,8 @@ Only vehicle controls send commands over Bluetooth. Reading state, and the updat
 |Binary sensor|User present|Yes|Polling|No|
 |Binary sensor|Wi-Fi|Yes|Streaming|No|
 |Binary sensor|Wiper heat|No|Streaming|No|
+|Button|Disable keep accessory power|Yes|—|Yes|
+|Button|Enable keep accessory power|Yes|—|Yes|
 |Button|Flash lights|Yes|—|Yes|
 |Button|HomeLink|Yes|—|Yes|
 |Button|Honk horn|Yes|—|Yes|
