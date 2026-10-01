@@ -74,6 +74,27 @@ You only need to do this once per vehicle.
 
 When the vehicle is within Bluetooth range, its commands use the local connection first, with an automatic fallback to the cloud when needed. This can make commands like locking, unlocking, or flashing the lights feel noticeably faster. When the vehicle is away, its commands use the cloud, and it switches back to Bluetooth on its own when it returns.
 
+### Troubleshooting Bluetooth setup
+
+#### Adding a local vehicle fails immediately
+
+If **Add local vehicle** fails right away and Home Assistant uses a built-in or USB Bluetooth adapter, set that adapter's scanning mode to **Active**:
+
+1. Go to {% my integrations title="**Settings** > **Devices & services**" %} and select the **Bluetooth** integration.
+2. Next to your adapter, select the {% icon "mdi:dots-vertical" %} menu, then **Configure**.
+3. Set **Scanning mode** to **Active** and select **Submit**.
+4. Try adding the local vehicle again.
+
+After the vehicle is added, you can set the scanning mode back to **Auto**. If you add the vehicle again later, switch to **Active** again first.
+
+#### The vehicle is not found
+
+The vehicle only shares the name Home Assistant uses to identify it when an adapter actively scans for it. Make sure at least one adapter or Bluetooth proxy that can reach the vehicle uses the **Active** or **Auto** scanning mode. If every adapter near the vehicle is set to **Passive**, Home Assistant can't find it.
+
+#### Bluetooth proxies
+
+Home Assistant needs to connect to the vehicle, not only listen to it. An [ESPHome Bluetooth proxy](/integrations/bluetooth/#remote-adapters-bluetooth-proxies) must have active connections enabled. Shelly devices can act as Bluetooth proxies for listening only, so they can't connect to the vehicle.
+
 ### Removing Bluetooth control
 
 Removing the Teslemetry integration, or the pairing for a single vehicle, stops Home Assistant from routing that vehicle's commands over Bluetooth and forgets the stored Bluetooth address. It does not revoke Home Assistant's virtual key from the vehicle itself. That key stays authorized on the car until you remove it there.
