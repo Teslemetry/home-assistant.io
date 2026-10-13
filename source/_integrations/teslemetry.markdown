@@ -108,6 +108,8 @@ To pair your Powerwall or Backup Gateway:
 
 Once paired, Home Assistant stores your Powerwall's address and password and sends energy commands to it directly, falling back to the cloud automatically whenever your Powerwall can't be reached.
 
+A paired energy site also gets extra entities that are only available from your Powerwall over your local network, such as **Grid code**, **Country** and **Distributor**, which show the grid code, country and electricity distributor set in your Powerwall's configuration. They are marked **Local** in the [energy site entity table](#energy-sites). Each one is only created when your Powerwall reports its value, and it becomes unavailable while your Powerwall can't be reached. If your Powerwall can't be reached when Home Assistant starts, these entities are still created and stay unavailable, then update on their own once your Powerwall responds, with no reload needed.
+
 {% note %}
 Removing the Teslemetry integration doesn't revoke the access key from your Powerwall system, so other apps or integrations using the same key keep working.
 {% endnote %}
@@ -341,8 +343,11 @@ Only vehicle controls send commands over Bluetooth. Reading state, and the updat
 |Sensor|Consumer imported from generator|No|Polling|
 |Sensor|Consumer imported from grid|No|Polling|
 |Sensor|Consumer imported from solar|No|Polling|
+|Sensor|Country|No|Local|
+|Sensor|Distributor|No|Local|
 |Sensor|Generator exported|Yes|Polling|
 |Sensor|Generator power|No|Polling|
+|Sensor|Grid code|No|Local|
 |Sensor|Grid exported|Yes|Polling|
 |Sensor|Grid exported from battery|No|Polling|
 |Sensor|Grid exported from generator|No|Polling|
@@ -396,6 +401,7 @@ Teslemetry delivers data by streaming or polling, depending on the product. The 
 - **Streaming**: the value arrives over the live stream in real time.
 - **Polling**: the value comes from Teslemetry's cached vehicle data.
 - **Both**: the value can arrive by streaming or polling, depending on the vehicle and its configuration.
+- **Local**: the value is polled directly from your Powerwall over your local network. These entities only exist for energy sites paired for [local Powerwall control](#local-powerwall-control).
 - **—** (em dash): the entity does not report data. Buttons send commands, so they have no data source.
 
 ### Vehicle data
@@ -409,6 +415,8 @@ The integration does not wake a sleeping vehicle to fetch data. Updates pause un
 ### Energy site data
 
 Energy sites are cloud-polled: live status and site information every 30 seconds, and energy history every 60 seconds.
+
+For an energy site paired for [local Powerwall control](#local-powerwall-control), the **Country**, **Distributor** and **Grid code** entities are polled from your Powerwall's configuration every 10 minutes.
 
 ## Known limitations
 
