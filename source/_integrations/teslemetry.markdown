@@ -179,6 +179,10 @@ Only vehicle controls send commands over Bluetooth. Reading state, and the updat
 |Binary sensor|Speed limited|No|Streaming|No|
 |Binary sensor|Status|Yes|Both|No|
 |Binary sensor|Supercharger session trip planner|No|Streaming|No|
+|Binary sensor|Tire pressure hard warning front left|No|Polling|No|
+|Binary sensor|Tire pressure hard warning front right|No|Polling|No|
+|Binary sensor|Tire pressure hard warning rear left|No|Polling|No|
+|Binary sensor|Tire pressure hard warning rear right|No|Polling|No|
 |Binary sensor|Tire pressure warning front left|No|Polling|No|
 |Binary sensor|Tire pressure warning front right|No|Polling|No|
 |Binary sensor|Tire pressure warning rear left|No|Polling|No|
