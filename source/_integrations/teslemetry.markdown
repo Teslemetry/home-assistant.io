@@ -108,6 +108,8 @@ To pair your Powerwall or Backup Gateway:
 
 Once paired, Home Assistant stores your Powerwall's address and password and sends energy commands to it directly, falling back to the cloud automatically whenever your Powerwall can't be reached.
 
+A paired energy site also gets extra entities that are only available from your Powerwall over your local network, such as the **Island frequency** and **Island voltage** sensors, which report the frequency and line-to-neutral voltage your Powerwall system's islander measures on each phase, on both its main and load sides. They are marked **Local** in the [energy site entity table](#energy-sites). Only the L1 voltage sensors are enabled by default, because a single-phase site reads near zero on L2 and L3. Each one is only created when your Powerwall reports its value, and it becomes unavailable while your Powerwall can't be reached. If your Powerwall can't be reached when Home Assistant starts, these entities are still created and stay unavailable, then update on their own once your Powerwall responds, with no reload needed.
+
 {% note %}
 Removing the Teslemetry integration doesn't revoke the access key from your Powerwall system, so other apps or integrations using the same key keep working.
 {% endnote %}
@@ -353,7 +355,19 @@ Only vehicle controls send commands over Bluetooth. Reading state, and the updat
 |Sensor|Grid services imported|No|Polling|
 |Sensor|Grid services power|Yes|Polling|
 |Sensor|Home usage|Yes|Polling|
+|Sensor|Island frequency L1 load|No|Local|
+|Sensor|Island frequency L1 main|No|Local|
+|Sensor|Island frequency L2 load|No|Local|
+|Sensor|Island frequency L2 main|No|Local|
+|Sensor|Island frequency L3 load|No|Local|
+|Sensor|Island frequency L3 main|No|Local|
 |Sensor|Island status|Yes|Polling|
+|Sensor|Island voltage L1-N load|Yes|Local|
+|Sensor|Island voltage L1-N main|Yes|Local|
+|Sensor|Island voltage L2-N load|No|Local|
+|Sensor|Island voltage L2-N main|No|Local|
+|Sensor|Island voltage L3-N load|No|Local|
+|Sensor|Island voltage L3-N main|No|Local|
 |Sensor|Load power|Yes|Polling|
 |Sensor|Percentage charged|Yes|Polling|
 |Sensor|Solar exported|No|Polling|
@@ -396,6 +410,7 @@ Teslemetry delivers data by streaming or polling, depending on the product. The 
 - **Streaming**: the value arrives over the live stream in real time.
 - **Polling**: the value comes from Teslemetry's cached vehicle data.
 - **Both**: the value can arrive by streaming or polling, depending on the vehicle and its configuration.
+- **Local**: the value is polled directly from your Powerwall over your local network. These entities only exist for energy sites paired for [local Powerwall control](#local-powerwall-control).
 - **—** (em dash): the entity does not report data. Buttons send commands, so they have no data source.
 
 ### Vehicle data
@@ -409,6 +424,8 @@ The integration does not wake a sleeping vehicle to fetch data. Updates pause un
 ### Energy site data
 
 Energy sites are cloud-polled: live status and site information every 30 seconds, and energy history every 60 seconds.
+
+For an energy site paired for [local Powerwall control](#local-powerwall-control), entities marked **Local** are polled from your Powerwall's status every 10 seconds.
 
 ## Known limitations
 
