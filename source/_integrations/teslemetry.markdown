@@ -117,6 +117,7 @@ Removing the Teslemetry integration doesn't revoke the access key from your Powe
 These are the entities available in the Teslemetry integration. Not all entities are enabled by default, and not all values are always available.
 Entities in the device tracker platform specifically require the `Vehicle location` scope, and will appear unavailable otherwise. 
 The **Enable keep accessory power** and **Disable keep accessory power** buttons are only created for vehicles on firmware 2025.38 or newer.
+The **Steering wheel heater** select and **Auto steering wheel heater** switch are not created for Model S and Model X vehicles from before the 2021 refresh, because these vehicles do not support the steering wheel heat commands.
 
 ### Vehicles
 
