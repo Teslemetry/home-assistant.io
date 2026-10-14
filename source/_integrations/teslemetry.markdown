@@ -108,6 +108,8 @@ To pair your Powerwall or Backup Gateway:
 
 Once paired, Home Assistant stores your Powerwall's address and password and sends energy commands to it directly, falling back to the cloud automatically whenever your Powerwall can't be reached.
 
+If the saved address later reaches a different Powerwall system, for example after your router gives that address to another device, Home Assistant stops using local control for that energy site, sends its commands through the cloud, and raises a repair. To fix it, reconfigure the energy site to pair it again with the correct address. Giving your Powerwall a fixed address on your router stops this from happening again.
+
 {% note %}
 Removing the Teslemetry integration doesn't revoke the access key from your Powerwall system, so other apps or integrations using the same key keep working.
 {% endnote %}
