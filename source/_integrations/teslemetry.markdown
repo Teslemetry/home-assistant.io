@@ -407,8 +407,6 @@ Legacy vehicles (certain pre-2021 Model S & Model X vehicles) that do not suppor
 
 The integration does not wake a sleeping vehicle to fetch data. Updates pause until the vehicle wakes up on its own or you interact with it.
 
-If a streaming vehicle sends no data for 10 minutes while the Teslemetry data stream is connected, Home Assistant raises a repair issue that says when its data last arrived. The vehicle's entities stay available with their last values, and the issue clears as soon as the vehicle's data arrives again.
-
 ### Energy site data
 
 Energy site live status, site information, tariffs, and energy history arrive through the Teslemetry data stream. If you've paired a Powerwall for [local control](#local-powerwall-control), Home Assistant also reads its live values directly over your local network every 5 seconds, and its backup reserve and operation mode every 30 seconds. Whenever your Powerwall can't be reached, Home Assistant uses the cloud values instead. Entity availability still follows the Teslemetry data stream.
