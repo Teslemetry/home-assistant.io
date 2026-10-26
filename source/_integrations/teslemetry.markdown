@@ -110,7 +110,7 @@ Once paired, Home Assistant stores your Powerwall's address and password and sen
 
 A paired energy site also gets the voltage and current of each solar string connected to your primary Powerwall 3, such as **PV string A voltage** and **PV string A current**, which are only available from your Powerwall over your local network. They are marked **Local** in the [energy site entity table](#energy-sites). Each one is only created when your Powerwall reports its value, and it becomes unavailable while your Powerwall can't be reached. If your Powerwall can't be reached when Home Assistant starts, these entities are still created and stay unavailable, then update on their own once your Powerwall responds, with no reload needed.
 
-A paired energy site also gets a **Powerwall** device for each Powerwall 3 and a **Powerwall expansion** device for each expansion pack, linked to the energy site device, with the energy remaining and full pack energy of that unit in kWh. These entities are listed in the [Powerwall entity table](#powerwall). Each unit's energy is the battery's raw value, so it includes the small reserve at the bottom of the battery that the energy site's **Percentage charged** leaves out. Your Powerwall's units are found when Home Assistant starts, so after adding or removing a Powerwall or expansion, reload the integration. If your Powerwall can't be reached when Home Assistant starts, the unit devices it found before are kept, and their entities appear again on the next start once your Powerwall responds.
+A paired energy site also gets a **Powerwall** device for each Powerwall 3 and a **Powerwall expansion** device for each expansion pack, linked to the energy site device, with the energy remaining and full pack energy of that unit in kWh. On a site with more than one Powerwall 3, each additional Powerwall 3 device also gets the voltage and current of the solar strings connected to it, such as **PV string A voltage**, while those of your primary Powerwall 3 stay on the energy site device. These entities are listed in the [Powerwall entity table](#powerwall). Each unit's energy is the battery's raw value, so it includes the small reserve at the bottom of the battery that the energy site's **Percentage charged** leaves out. Your Powerwall's units are found when Home Assistant starts, so after adding or removing a Powerwall or expansion, reload the integration. If your Powerwall can't be reached when Home Assistant starts, the unit devices it found before are kept, and their entities appear again on the next start once your Powerwall responds.
 
 {% note %}
 Removing the Teslemetry integration doesn't revoke the access key from your Powerwall system, so other apps or integrations using the same key keep working.
@@ -397,6 +397,18 @@ These entities only exist for energy sites paired for [local Powerwall control](
 |---|---|---|---|
 |Sensor|Energy remaining|Yes|Local|
 |Sensor|Full pack energy|Yes|Local|
+|Sensor|PV string A current|Yes|Local|
+|Sensor|PV string A voltage|Yes|Local|
+|Sensor|PV string B current|Yes|Local|
+|Sensor|PV string B voltage|Yes|Local|
+|Sensor|PV string C current|Yes|Local|
+|Sensor|PV string C voltage|Yes|Local|
+|Sensor|PV string D current|Yes|Local|
+|Sensor|PV string D voltage|Yes|Local|
+|Sensor|PV string E current|Yes|Local|
+|Sensor|PV string E voltage|Yes|Local|
+|Sensor|PV string F current|Yes|Local|
+|Sensor|PV string F voltage|Yes|Local|
 
 ### Metadata
 
