@@ -108,7 +108,7 @@ To pair your Powerwall or Backup Gateway:
 
 Once paired, Home Assistant stores your Powerwall's address and password and sends energy commands to it directly, falling back to the cloud automatically whenever your Powerwall can't be reached.
 
-A paired energy site also gets the voltage and current of each solar string connected to your primary Powerwall 3, such as **PV string A voltage** and **PV string A current**, which are only available from your Powerwall over your local network. They are marked **Local** in the [energy site entity table](#energy-sites). Each one is only created when your Powerwall reports its value, and it becomes unavailable while your Powerwall can't be reached. If your Powerwall can't be reached when Home Assistant starts, these entities are still created and stay unavailable, then update on their own once your Powerwall responds, with no reload needed.
+A paired energy site also gets the voltage, current, and state of each solar string connected to your primary Powerwall 3, such as **PV string A voltage**, **PV string A current**, and **PV string A state**, and the total solar power of that Powerwall 3 as **PV power**, which are only available from your Powerwall over your local network. They are marked **Local** in the [energy site entity table](#energy-sites). A string's state is **Active**, **Active (parallel)**, or **Standby**. Each one is only created when your Powerwall reports its value, and it becomes unavailable while your Powerwall can't be reached. If your Powerwall can't be reached when Home Assistant starts, these entities are still created and stay unavailable, then update on their own once your Powerwall responds, with no reload needed.
 
 {% note %}
 Removing the Teslemetry integration doesn't revoke the access key from your Powerwall system, so other apps or integrations using the same key keep working.
@@ -358,17 +358,24 @@ Only vehicle controls send commands over Bluetooth. Reading state, and the updat
 |Sensor|Island status|Yes|Polling|
 |Sensor|Load power|Yes|Polling|
 |Sensor|Percentage charged|Yes|Polling|
+|Sensor|PV power|Yes|Local|
 |Sensor|PV string A current|Yes|Local|
+|Sensor|PV string A state|Yes|Local|
 |Sensor|PV string A voltage|Yes|Local|
 |Sensor|PV string B current|Yes|Local|
+|Sensor|PV string B state|Yes|Local|
 |Sensor|PV string B voltage|Yes|Local|
 |Sensor|PV string C current|Yes|Local|
+|Sensor|PV string C state|Yes|Local|
 |Sensor|PV string C voltage|Yes|Local|
 |Sensor|PV string D current|Yes|Local|
+|Sensor|PV string D state|Yes|Local|
 |Sensor|PV string D voltage|Yes|Local|
 |Sensor|PV string E current|Yes|Local|
+|Sensor|PV string E state|Yes|Local|
 |Sensor|PV string E voltage|Yes|Local|
 |Sensor|PV string F current|Yes|Local|
+|Sensor|PV string F state|Yes|Local|
 |Sensor|PV string F voltage|Yes|Local|
 |Sensor|Solar exported|No|Polling|
 |Sensor|Solar generated|Yes|Polling|
@@ -425,7 +432,7 @@ The integration does not wake a sleeping vehicle to fetch data. Updates pause un
 
 Energy sites are cloud-polled: live status and site information every 30 seconds, and energy history every 60 seconds.
 
-For an energy site paired for [local Powerwall control](#local-powerwall-control), the solar string entities marked **Local** are polled from your Powerwall every 30 seconds.
+For an energy site paired for [local Powerwall control](#local-powerwall-control), the solar string and PV power entities marked **Local** are polled from your Powerwall every 30 seconds.
 
 ## Known limitations
 
