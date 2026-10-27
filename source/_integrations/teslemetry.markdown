@@ -81,6 +81,8 @@ Once paired, Home Assistant stores your Powerwall's address and password and sen
 
 A paired energy site also gets extra entities that are only available from your Powerwall over your local network, such as **Grid OK** and **Contactor closed**. They are marked **Local** in the [energy site entity table](#energy-sites). Each one is only created when your Powerwall reports its value, and it becomes unavailable while your Powerwall can't be reached. If your Powerwall can't be reached when Home Assistant starts, these entities are still created and stay unavailable, then update on their own once your Powerwall responds, with no reload needed.
 
+Each Powerwall 3 and expansion pack in a paired energy site also has a **Percentage charged** sensor, which is the energy remaining in that unit divided by its full pack energy. It is calculated from the battery's raw values, so it includes the small reserve at the bottom of the battery that the energy site's **Percentage charged** leaves out, and it can read slightly higher than the figure in the Tesla app. These entities are listed in the [Powerwall entity table](#powerwall).
+
 A paired energy site can also be charged or discharged at a set power for a set time with the [Dispatch battery power](/actions/teslemetry.dispatch_battery_power/) action, and returned to its normal operation early with the [Resume battery operation](/actions/teslemetry.resume_battery_operation/) action. These actions are sent directly to your Powerwall, so they only work while it can be reached on your local network.
 
 {% note %}
@@ -363,6 +365,14 @@ Only vehicle controls send commands over Bluetooth. While a paired vehicle that 
 |Sensor|Power|Yes|Polling|
 |Sensor|State|Yes|Polling|
 |Sensor|Vehicle|Yes|Polling|
+
+### Powerwall
+
+These entities only exist for energy sites paired for [local Powerwall control](#local-powerwall-control).
+
+|Domain|Name|Enabled|Data|
+|---|---|---|---|
+|Sensor|Percentage charged|Yes|Local|
 
 ### Metadata
 
