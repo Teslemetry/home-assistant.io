@@ -22,6 +22,7 @@ By default, Teslemetry sends every vehicle command through the cloud. If Home As
 
 - A Bluetooth adapter available to Home Assistant, such as a built-in adapter or a [Bluetooth proxy](/integrations/bluetooth/#remote-adapters-bluetooth-proxies).
 - The vehicle must be within Bluetooth range of that adapter while you set up pairing.
+- At least one adapter or proxy that can connect to the vehicle must use the **Auto** or **Active** [scanning mode](#the-vehicle-is-not-found-during-bluetooth-setup). Home Assistant reads the vehicle's Bluetooth name with active scanning, so it can't find the vehicle if every adapter near it is set to **Passive**.
 - The vehicle must support Tesla's vehicle command protocol. Vehicles that don't, such as certain pre-2021 Model S and Model X vehicles, are not listed when you add a local vehicle.
 
 ### Setting up Bluetooth control
@@ -451,6 +452,17 @@ If your Teslemetry authentication token becomes invalid or expires, Home Assista
 ### Timeouts
 
 Timeouts can occur due to connection issues between Home Assistant, Teslemetry, Tesla, or the vehicle itself (e.g., the vehicle is in an area with poor cellular reception). These are often temporary. If timeouts persist, please contact `support@teslemetry.com`.
+
+### The vehicle is not found during Bluetooth setup
+
+When you add a local vehicle, Home Assistant identifies it by its Bluetooth name. The vehicle only shares this name when an adapter actively scans for it. If **Add local vehicle** can't find the vehicle, check the scanning mode of the adapters and proxies near it:
+
+- **Built-in or USB Bluetooth adapter**: Go to {% my integrations title="**Settings** > **Devices & services**" %}, select **Bluetooth**, then select **Configure** next to your adapter. Set **Scanning mode** to **Auto** or **Active**. For details, see [Scanning modes](/integrations/bluetooth/#scanning-modes).
+- **ESPHome Bluetooth proxy**: Go to {% my integrations title="**Settings** > **Devices & services**" %}, select **ESPHome**, then select **Configure** next to your proxy. Set **Bluetooth scanning mode** to **Auto** or **Active**. For details, see [Bluetooth proxy scanning mode](/integrations/esphome/#bluetooth-proxy-scanning-mode).
+
+Only adapters and proxies that can connect to devices count. A proxy that only listens can't connect to the vehicle, even when it scans actively.
+
+After changing the scanning mode, make sure the vehicle is within range, then try **Add local vehicle** again.
 
 ## Examples
 
