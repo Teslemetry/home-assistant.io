@@ -85,6 +85,8 @@ A paired energy site can also be charged or discharged at a set power for a set 
 
 A paired energy site also gets the voltage and current of each solar string connected to your primary Powerwall 3, such as **PV string A voltage** and **PV string A current**. Like the other **Local** entities, each one is only created when your Powerwall reports its value.
 
+A paired energy site also gets the energy stored in its Powerwalls as **Energy left**, and their total capacity as **Total pack energy**, which is disabled by default. Tesla's cloud no longer reports these values, so they are only available while your Powerwall can be reached on your local network.
+
 {% note %}
 Removing the Teslemetry integration doesn't revoke the access key from your Powerwall system, so other apps or integrations using the same key keep working.
 {% endnote %}
@@ -334,6 +336,7 @@ Only vehicle controls send commands over Bluetooth. While a paired vehicle that 
 |Sensor|Consumer imported from generator|No|Polling|
 |Sensor|Consumer imported from grid|No|Polling|
 |Sensor|Consumer imported from solar|No|Polling|
+|Sensor|Energy left|Yes|Local|
 |Sensor|Generator exported|Yes|Polling|
 |Sensor|Generator power|No|Polling|
 |Sensor|Grid exported|Yes|Polling|
@@ -365,6 +368,7 @@ Only vehicle controls send commands over Bluetooth. While a paired vehicle that 
 |Sensor|Solar generated|Yes|Polling|
 |Sensor|Solar power|Yes|Polling|
 |Sensor|Solar RGM power|No|Local|
+|Sensor|Total pack energy|No|Local|
 |Sensor|Version|Yes|Polling|
 |Sensor|VPP backup reserve|Yes|Polling|
 |Switch|Allow charging from grid|Yes|Polling|
