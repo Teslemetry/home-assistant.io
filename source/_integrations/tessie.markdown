@@ -126,7 +126,7 @@ The integration will create a climate entity to control the vehicle's climate co
 - Change to one of the three keep modes: Keep, Pet, and Camp
 - Turn on and off
 
-The passenger set temperature is shown as a sensor but cannot be changed by Tessie.
+The **Passenger climate** entity, disabled by default, controls the front passenger temperature. Its **Sync with driver** preset sets the passenger temperature to the driver temperature, and its **Split** preset lets you set a separate passenger temperature. Tesla does not report whether the front temperatures are synced, so the preset shows **Sync with driver** whenever both temperatures are equal. While the passenger temperature is split, changing the **Climate** temperature keeps the passenger temperature.
 
 ### Cover
 
