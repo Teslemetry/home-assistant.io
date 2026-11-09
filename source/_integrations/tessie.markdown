@@ -182,6 +182,8 @@ Cooled seats:
 - Front left
 - Front right
 
+A select entity also sets the steering wheel heater to Off, Low, or High. Turning the steering wheel heater on also starts climate if it is off.
+
 ### Sensor
 
 The integration will create sensor entities for a variety of metrics related to your vehicles:
