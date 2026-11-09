@@ -178,6 +178,7 @@ Only vehicle controls send commands over Bluetooth. While a paired vehicle that 
 |Button|Wake|Yes|—|Yes|
 |Climate|Cabin overheat protection|Yes|Both|Yes|
 |Climate|Climate|Yes|Both|Yes|
+|Climate|Passenger climate|No|Both|Yes|
 |Cover|Charge port door|Yes|Both|Yes|
 |Cover|Frunk|Yes|Both|Yes|
 |Cover|Sunroof|No|Polling|Yes|
@@ -402,6 +403,10 @@ Charge on solar lets your Tesla vehicle keep charging while your home has excess
 There's no separate upper limit entity for charge on solar. It reuses the vehicle's existing **Charge limit** number as the upper bound, so the lower limit can never be set above it. If you lower the charge limit below the current lower limit, the lower limit follows it down on the next update from the vehicle.
 
 If you disable the Labs preview feature, or the `Vehicle commands` scope is no longer granted, both entities are removed until they become available again.
+
+## Passenger climate
+
+The **Passenger climate** entity controls the front passenger temperature. Its **Sync with driver** preset sets the passenger temperature to the driver temperature, and its **Split** preset lets you set a separate passenger temperature. Tesla does not report whether the front temperatures are synced, so the preset shows **Sync with driver** whenever both temperatures are equal. While the passenger temperature is split, changing the **Climate** temperature keeps the passenger temperature.
 
 ## Energy dashboard
 
