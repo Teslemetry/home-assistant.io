@@ -83,6 +83,8 @@ A paired energy site also gets extra entities that are only available from your 
 
 The [Dispatch battery power](/actions/teslemetry.dispatch_battery_power/) action, which charges or discharges the Powerwall at a set power for a set time, and the [Resume battery operation](/actions/teslemetry.resume_battery_operation/) action, which returns it to its normal operation early, work for any energy site with a Powerwall. On a paired energy site, they are sent directly to your Powerwall first, and through Teslemetry whenever your Powerwall can't be reached. On an energy site without local control, they are sent through Teslemetry, which can only send them once Teslemetry is paired with your Powerwall in the Teslemetry console. Until then, these actions are refused, and a repair asks you to pair Teslemetry with your Powerwall.
 
+The **Grid export limit** and **Grid import limit** numbers set the most power, in kW, that your site may send to or draw from the grid, and the **Solar curtailment** switch sets whether your Powerwall may reduce solar production to stay within the export limit. Like the battery actions above, they're sent directly to your Powerwall on a paired energy site and otherwise through Teslemetry, so they only appear on an energy site with local control or that Teslemetry is paired with. The **Solar curtailment** state is read from your Powerwall, so it's unknown on an energy site without local control.
+
 A paired energy site also gets the voltage and current of each solar string connected to your primary Powerwall 3, such as **PV string A voltage** and **PV string A current**. Like the other **Local** entities, each one is only created when your Powerwall reports its value.
 
 {% note %}
@@ -325,6 +327,8 @@ Only vehicle controls send commands over Bluetooth. While a paired vehicle that 
 |Calendar|Buy tariff|Yes|Polling|
 |Calendar|Sell tariff|Yes|Polling|
 |Number|Backup reserve|Yes|Polling|
+|Number|Grid export limit|Yes|Polling|
+|Number|Grid import limit|Yes|Polling|
 |Number|Off grid reserve|Yes|Polling|
 |Select|Allow export|Yes|Polling|
 |Select|Operation mode|Yes|Polling|
@@ -368,6 +372,7 @@ Only vehicle controls send commands over Bluetooth. While a paired vehicle that 
 |Sensor|Version|Yes|Polling|
 |Sensor|VPP backup reserve|Yes|Polling|
 |Switch|Allow charging from grid|Yes|Polling|
+|Switch|Solar curtailment|Yes|Polling|
 |Switch|Storm watch|Yes|Polling|
 
 ### Wall connector
