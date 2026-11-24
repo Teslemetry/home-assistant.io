@@ -203,6 +203,7 @@ Only vehicle controls send commands over Bluetooth. While a paired vehicle that 
 |Select|Seat heater third row left|No|Polling|Yes|
 |Select|Seat heater third row right|No|Polling|Yes|
 |Select|Steering wheel heater|Yes|Both|Yes|
+|Sensor|AC charging energy in|No|Streaming|No|
 |Sensor|Battery level|Yes|Both|No|
 |Sensor|Battery range|Yes|Polling|No|
 |Sensor|BMS state|No|Streaming|No|
